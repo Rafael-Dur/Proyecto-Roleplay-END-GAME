@@ -16,17 +16,24 @@ namespace RolePlayEndGame
 
         public bool attackItem {get; set;}
 
-        public bool defensiveItem {get; set;}
-
-        public Item(string name, int damage, int protection, int healing, bool attackItem, bool defensiveItem)
+        public Item(string name, int damage, int protection, int healing, bool attackItem)
         {
             this.name = name;
             this.damage = damage;
             this.protection = protection;
             this.healing = healing;
             this.attackItem = attackItem;
-            this.defensiveItem = defensiveItem;
+        }
 
+        public virtual int Attack()
+        {
+            if(!attackItem)
+            {
+                return 0;
+            }
+            else{
+                return damage;
+            }
         }
 
     }

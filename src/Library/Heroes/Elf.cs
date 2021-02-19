@@ -10,23 +10,46 @@ namespace RolePlayEndGame
 
         public List<Item> hybridInventary = new List<Item>();
 
-        public  Elf(string name, int damage, int health, int healing, List<Item> hybridinventary, int speedMovment): base( name, damage, health, healing, hero, villain)
+        public  Elf(string name, int damage, int health, int healing, List<Item> hybridInventary, int speedMovment): base( name, damage, health, healing,new List<Item>(), true)
         {
             this.hero = true;
-            this.villain = false;
             this.speedMovment = speedMovment;
             this.hybridInventary = hybridInventary;
 
         }
 
         public void AddItems(Item item)
-        {
-            hybridInventary.Add(item);
-        }
-        public void AddItems(MagicItem item)
-        {
-            hybridInventary.Add(item);
+        {        
+            if(isItemHero(item) && !(item is AsclepioStaff))
+                hybridInventary.Add(item);
         }
 
+        public void AddItems(MagicItem item)
+        {
+            if(isItemHero(item))
+                hybridInventary.Add(item);
+        }
+
+         public new void RemoveItem(Item item)
+        {
+            inventary.Remove(item);
+
+        }
+
+         public void RemoveMagicItem(MagicItem magicItem)
+        {
+            inventary.Remove(magicItem);
+
+        }
+        public bool isItemHero(Item item)
+        {
+            if(item is IVillain)
+            {
+                return false;
+            }
+            else{
+                return true;
+            }
+        }
     }
 }

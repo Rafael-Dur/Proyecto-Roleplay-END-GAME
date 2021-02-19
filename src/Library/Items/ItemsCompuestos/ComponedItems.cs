@@ -7,7 +7,7 @@ namespace RolePlayEndGame
     public class ComponedItems: Item
     {
         public List<Item> composition = new List<Item>();
-        public ComponedItems(string name, int damage, int protection, int healing, List<Item> composition): base(name, damage, protection, healing)
+        public ComponedItems(string name, int damage, int protection, int healing, bool attackItem, List<Item> composition): base(name, damage, protection, healing, attackItem)
         {
             this.composition = composition;
         }
@@ -18,11 +18,6 @@ namespace RolePlayEndGame
             if(item.attackItem == true)
             {
                 damage += damage*10;
-            }
-
-            else(item.defensiveItem == true);
-            {
-                protection += protection*10;
             }
         }
     }

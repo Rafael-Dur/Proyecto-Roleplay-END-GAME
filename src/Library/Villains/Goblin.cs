@@ -4,15 +4,18 @@ using RolePlayEndGame;
 
 namespace RolePlayEndGame
 {
-    public class DarkRaider: Character
+    public class Goblin: Character
     {
-        protected int speedMovment {get; set;}
-
-        public DarkRaider(string name, int damage, int health, int healing, int speedMovment,  List<Item> inventary): base (name,damage, health, healing, inventary, false)
+        public Goblin(string name, int damage, int health, int healing, List<Item> inventary): base (name,damage, health, healing, new List<Item>(), false)
         {
             this.healing = 0;
             this.hero = false;
-            this.speedMovment = speedMovment;
+        }
+        
+        public void StealItem(Character character, Item item)
+        {
+            character.RemoveItem(item);
+            this.inventary.Add(item);
 
         }
 

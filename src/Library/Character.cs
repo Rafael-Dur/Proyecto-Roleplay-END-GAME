@@ -20,16 +20,13 @@ namespace RolePlayEndGame
 
         protected bool hero {get; set;}
 
-        protected bool villain {get; set;}
-
-        public Character(string name, int damage, int health, int healing, List<Item> inventary,  bool hero, bool villain)
+        public Character(string name, int damage, int health, int healing, List<Item> inventary,  bool hero)
         {
             this.name = name;
             this.damage = damage;
             this.health = health;
             this.vp = 0;
             this.hero = hero;
-            this.villain = villain;
 
         }
 
@@ -47,7 +44,17 @@ namespace RolePlayEndGame
         {
             int newHealth = character.health + this.healing;
             character.health = newHealth;
+
         }
 
+        public void AddItem(Item item)
+        {
+            inventary.Add(item);
+        }
+
+        public void RemoveItem(Item item)
+        {
+            inventary.Remove(item);
+        }
     }
 }

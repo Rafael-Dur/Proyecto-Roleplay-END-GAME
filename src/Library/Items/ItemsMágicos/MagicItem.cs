@@ -8,7 +8,7 @@ namespace RolePlayEndGame
     {
         protected bool magic = true;
 
-        public MagicItem(string name, int damage, int protection, int healing, bool magic): base( name,damage,protection,healing)
+        public MagicItem(string name, int damage, int protection, int healing, bool magic, bool attackItem): base( name,damage,protection,healing, attackItem)
         {
             this.magic = magic;
 

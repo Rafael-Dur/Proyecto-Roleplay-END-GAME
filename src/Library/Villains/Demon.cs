@@ -11,18 +11,34 @@ namespace RolePlayEndGame
         protected bool fly {get; set;}
         public List<MagicItem> magicInventary = new List<MagicItem>();
 
-        public Demon(string name, int damage, int health, int healing, int MagicDamage,  List<MagicItem> magicInventary): base (name,damage, health, healing, inventary, hero, villain)
+        public Demon(string name, int damage, int health, int healing, int MagicDamage,  List<MagicItem> magicInventary): base (name,damage, health, healing, new List<Item>(), false)
         {
             this.healing = 0;
             this.hero = false;
-            this.villain = true;
             this.fly = true;
             this.MagicDamage = MagicDamage;
             this.magicInventary = magicInventary;
         }
         public void AddItems(MagicItem magicItem)
         {
-            magicInventary.Add(magicItem);
+            if(isItemVillain(magicItem))
+                magicInventary.Add(magicItem);
+        }
+
+         public void RemoveMagicItem(MagicItem magicItem)
+        {
+            inventary.Remove(magicItem);
+
+        }
+        public bool isItemVillain(Item item)
+        {
+            if(item is IHero)
+            {
+                return false;
+            }
+            else{
+                return true;
+            }
         }
     }
 }
