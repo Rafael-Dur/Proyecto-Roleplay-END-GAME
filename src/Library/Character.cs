@@ -14,7 +14,7 @@ namespace RolePlayEndGame
 
         protected int healing {get; set;}
 
-        protected List<item> inventary = new List();
+        protected List<Item> inventary = new List<Item>();
 
         protected int vp {get; set;}
 
@@ -22,7 +22,7 @@ namespace RolePlayEndGame
 
         protected bool villain {get; set;}
 
-        public Character(string name, int damage, int health, int healing, List<items> inventary,  bool hero, bool villain)
+        public Character(string name, int damage, int health, int healing, List<Item> inventary,  bool hero, bool villain)
         {
             this.name = name;
             this.damage = damage;
@@ -35,7 +35,7 @@ namespace RolePlayEndGame
 
         public void Attack(Character character)
         {
-            int newHealth = character.health - this.Character.damage;
+            int newHealth = character.health - this.damage;
             character.health=newHealth;
             if(newHealth<=0)
             {

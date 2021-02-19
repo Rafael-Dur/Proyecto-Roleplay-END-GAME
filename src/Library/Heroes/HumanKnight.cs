@@ -8,7 +8,7 @@ namespace RolePlayEndGame
     {
         public int stun {get; set;} /*Este atributo impide a los oponentes atacarlo durante un período de tiempo*/
 
-        public  HumanKnight(string name, int damage, int health, int healing, List<items> inventary, int stun): base( name,damage,health,healing,inventary,hero,villain)
+        public  HumanKnight(string name, int damage, int health, int healing, List<Item> inventary, int stun): base( name,damage,health,healing,inventary,hero,villain)
         {
             this.healing = 0;
             this.hero = true;

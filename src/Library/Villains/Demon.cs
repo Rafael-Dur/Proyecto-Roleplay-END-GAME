@@ -9,9 +9,9 @@ namespace RolePlayEndGame
         protected int MagicDamage {get; set;} /*Se inflinge daño sin importar si el enemigo lleva una armadura o item defensivo*/
 
         protected bool fly {get; set;}
-        public List<magicItems> magicInventary = new List();
+        public List<MagicItem> magicInventary = new List<MagicItem>();
 
-        public Demon(string name, int damage, int health, int healing, int MagicDamage,  List<magicItems> magicInventary): base (name,damage, health, healing, inventary, hero, villain)
+        public Demon(string name, int damage, int health, int healing, int MagicDamage,  List<MagicItem> magicInventary): base (name,damage, health, healing, inventary, hero, villain)
         {
             this.healing = 0;
             this.hero = false;
@@ -20,7 +20,7 @@ namespace RolePlayEndGame
             this.MagicDamage = MagicDamage;
             this.magicInventary = magicInventary;
         }
-        public void AddItems(Item magicItem)
+        public void AddItems(MagicItem magicItem)
         {
             magicInventary.Add(magicItem);
         }

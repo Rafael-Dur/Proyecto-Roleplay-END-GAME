@@ -8,9 +8,9 @@ namespace RolePlayEndGame
     {
         public int speedMovment {get; set;}
 
-        public List<items> hybridInventary = new List();
+        public List<Item> hybridInventary = new List<Item>();
 
-        public  Elf(string name, int damage, int health, int healing, List<items> hybridinventary, int speedMovment): base( name, damage, health, healing, hero, villain)
+        public  Elf(string name, int damage, int health, int healing, List<Item> hybridinventary, int speedMovment): base( name, damage, health, healing, hero, villain)
         {
             this.hero = true;
             this.villain = false;

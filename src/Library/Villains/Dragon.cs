@@ -9,9 +9,9 @@ namespace RolePlayEndGame
         protected int fireBreath {get; set;} /* Atributo que intensifica porcentualmente el valor de daño del personaje*/
 
         protected bool fly {get; set;} /*Si el personaje puede volar, no puede ser atacado con armas cuerpo a cuerpo*/
-        public List<items> hybridInventary = new List();
+        public List<Item> hybridInventary = new List<Item>();
 
-        public Dragon(string name, int damage, int health, int healing, int fireBreath,  List<items> hybridInventary): base (name,damage, health, healing, hero, villain)
+        public Dragon(string name, int damage, int health, int healing, int fireBreath,  List<Item> hybridInventary) :base (name,damage, health, healing, hero, villain)
         {
             this.healing = 0;
             this.hero = false;

@@ -8,7 +8,7 @@ namespace RolePlayEndGame
     {
         protected int speedMovment {get; set;}
 
-        public DarkRaider(string name, int damage, int health, int healing, int speedMovment,  List<items> inventary): base (name,damage, health, healing, inventary, hero, villain)
+        public DarkRaider(string name, int damage, int health, int healing, int speedMovment,  List<Item> inventary): base (name,damage, health, healing, inventary, hero, villain)
         {
             this.healing = 0;
             this.hero = false;
