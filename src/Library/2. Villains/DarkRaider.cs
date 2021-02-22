@@ -4,18 +4,18 @@ using RolePlayEndGame;
 
 namespace RolePlayEndGame
 {
-    public class Orc: Character
+    public class DarkRaider: Character
     {
-        protected int strenght {get; set;} /*Atributo que incrementa porcentualmente el daño inflingido*/
+        protected int speedMovment {get; set;}
 
-        public Orc(string name, int damage, int health, int healing, int strenght,  List<Item> inventary): base (name,damage, health, healing, new List<Item>(), false)
+        public DarkRaider(string name, int damage, int health, int healing, int speedMovment,  List<Item> inventary): base (name,damage, health, healing, inventary, false, true)
         {
             this.healing = 0;
             this.hero = false;
-            this.strenght = strenght;
+            this.speedMovment = speedMovment;
 
         }
-        
+
         public void AddItems(Item item)
         {
             if(isItemVillain(item))

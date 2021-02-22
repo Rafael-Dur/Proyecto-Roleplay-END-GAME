@@ -4,21 +4,18 @@ using RolePlayEndGame;
 
 namespace RolePlayEndGame
 {
-    public class Goblin: Character
+    public class Orc: Character
     {
-        public Goblin(string name, int damage, int health, int healing, List<Item> inventary): base (name,damage, health, healing, new List<Item>(), false)
+        protected int strenght {get; set;} /*Atributo que incrementa porcentualmente el daño inflingido*/
+
+        public Orc(string name, int damage, int health, int healing, int strenght,  List<Item> inventary): base (name,damage, health, healing, new List<Item>(), false, true)
         {
             this.healing = 0;
             this.hero = false;
+            this.strenght = strenght;
+
         }
         
-        public void StealItem(Character character, Item item)
-        {
-            character.RemoveItem(item);
-            this.inventary.Add(item);
-
-        }
-
         public void AddItems(Item item)
         {
             if(isItemVillain(item))

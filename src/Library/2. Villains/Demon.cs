@@ -4,39 +4,35 @@ using RolePlayEndGame;
 
 namespace RolePlayEndGame
 {
-    public class Wizard: Character
+    public class Demon: Character
     {
         protected int MagicDamage {get; set;} /*Se inflinge daño sin importar si el enemigo lleva una armadura o item defensivo*/
+
+        protected bool fly {get; set;}
         public List<MagicItem> magicInventary = new List<MagicItem>();
-        public SpellsBook Book{get;set;}
-        public  Wizard(string name, int damage, int health, int healing,int MagicDamage, List<MagicItem> magicInventary): base( name, damage, health, healing, new List<Item>(),true)
+
+        public Demon(string name, int damage, int health, int healing, int MagicDamage,  List<MagicItem> magicInventary): base (name,damage, health, healing, new List<Item>(), false, true)
         {
-            this.hero = true;
+            this.healing = 0;
+            this.hero = false;
+            this.fly = true;
             this.MagicDamage = MagicDamage;
             this.magicInventary = magicInventary;
-            Book = new SpellsBook();
-
         }
-
-        public void AddItems(Spell spell)
-        {
-            Book.Combine(spell);
-        }
-
         public void AddItems(MagicItem magicItem)
         {
-            if(isItemHero(magicItem))
+            if(isItemVillain(magicItem))
                 magicInventary.Add(magicItem);
         }
 
          public void RemoveMagicItem(MagicItem magicItem)
         {
             inventary.Remove(magicItem);
+
         }
-        
-        public bool isItemHero(Item item)
+        public bool isItemVillain(Item item)
         {
-            if(item is IVillain)
+            if(item is IHero)
             {
                 return false;
             }

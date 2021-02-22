@@ -4,15 +4,15 @@ using RolePlayEndGame;
 
 namespace RolePlayEndGame
 {
-    public class Dwarf: Character,IHero
+    public class HumanKnight: Character
     {
-        public int resistance {get; set;} /*Atributo que reduce porcentualmente el daño recibido*/
+        public int stun {get; set;} /*Este atributo impide a los oponentes atacar, curarse y moverse durante un período de tiempo*/
 
-        public  Dwarf(string name, int damage, int health, int healing, List<Item> inventary, int resistance): base( name,damage,health,healing,inventary,true)
+        public  HumanKnight(string name, int damage, int health, int healing, List<Item> inventary, int stun): base( name,damage,health,healing,inventary,true, true)
         {
             this.healing = 0;
             this.hero = true;
-            this.resistance = resistance;
+            this.stun = stun;
 
         }
 
@@ -20,15 +20,13 @@ namespace RolePlayEndGame
         {
             if(isItemHero(item))
                 inventary.Add(item);
-        
         }
 
-        public new void RemoveItem(Item item)
+         public new void RemoveItem(Item item)
         {
             inventary.Remove(item);
 
         }
-
         public bool isItemHero(Item item)
         {
             if(item is IVillain)

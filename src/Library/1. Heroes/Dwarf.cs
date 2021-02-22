@@ -4,15 +4,15 @@ using RolePlayEndGame;
 
 namespace RolePlayEndGame
 {
-    public class Hobbit: Character,IHero
+    public class Dwarf: Character,IHero
     {
-        public int invisivility {get; set;} /*Al no ser visto, el personaje no puede ser atacado mientras dure el efecto (en un período de tiempo)*/
+        public int resistance {get; set;} /*Atributo que reduce porcentualmente el daño recibido*/
 
-        public  Hobbit(string name, int damage, int health, int healing, List<Item> inventary, int invisivility): base( name,damage,health,healing,inventary,true)
+        public  Dwarf(string name, int damage, int health, int healing, List<Item> inventary, int resistance): base( name,damage,health,healing,inventary,true, true)
         {
             this.healing = 0;
             this.hero = true;
-            this.invisivility = invisivility;
+            this.resistance = resistance;
 
         }
 

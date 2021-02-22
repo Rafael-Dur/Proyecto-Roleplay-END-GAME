@@ -6,6 +6,16 @@ namespace RolePlayEndGame
 {
     public class Encounters
     {
+
+        public List<IHero> listaDeHeroes = new List<IHero>();
+        public List<IVillain> listaDeVillanos = new List<IVillain>();
+
+        public Encounters(List<IHero> listaDeHeroes, List<IVillain> listaDeVillanos)
+        {
+            this.listaDeHeroes = listaDeHeroes;
+            this.listaDeVillanos = listaDeVillanos;
+        }
+        
         public void ExchangeEncounter(Character originCharacter, Character recieverCharacter,Item item)
         {
             originCharacter.RemoveItem(item);
@@ -15,6 +25,42 @@ namespace RolePlayEndGame
         {
             originCharacter.RemoveItem(item);
             recieverCharacter.AddItem(item);
+        }
+
+
+        public void CombatEncounter(Character attackCharacter, Character affectedCharacter)
+        {
+            while((listaDeHeroes.Count) > 0 && (listaDeVillanos.Count) > 0)
+            {
+                int i =0;
+                foreach(IVillain villano in listaDeVillanos)
+                {
+                    Character heroe=(Character)listaDeHeroes[i];
+                    ((Character)villano).Attack(heroe);
+                    if(((Character)heroe).IsAlive() != true)
+                    {
+                        listaDeHeroes.Remove(listaDeHeroes[i]);
+                    }
+
+                    i++;
+                    if(listaDeHeroes.Count==i)
+                    {
+                        i=0;
+                    }
+                }
+
+                foreach(IHero heroe in listaDeHeroes)
+                {
+                    foreach(IVillain villano in listaDeVillanos)
+                    {
+                            ((Character)heroe).Attack((Character)villano);
+                            if(((Character)villano).IsAlive() != true)
+                            {
+                                listaDeVillanos.Remove(villano);
+                            }
+                    }   
+                }
+            }
         }
     }
 }

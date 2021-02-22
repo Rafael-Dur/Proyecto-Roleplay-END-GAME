@@ -8,14 +8,10 @@ namespace RolePlayEndGame
     {
         public List<Spell> listOfSpells = new List<Spell>();
 
-        public SpellsBook()
+        public SpellsBook():base("Libro de Hechizos", 0, 0,0, true,false)
         {
         }
 
-        public SpellsBook(string name, int damage, int protection, int healing, bool magic, bool attackItem): base(name, damage, protection, healing,true, attackItem)
-        {
-           
-        }
 
         public void Combine(Spell spell)
         {

@@ -6,37 +6,40 @@ namespace RolePlayEndGame
 {
     public class Character
     {
-        protected string name{get; set;}
+        public string name{get; set;}
 
-        protected int damage {get; set;}
+        public int damage {get; set;}
 
-        protected int health {get; set;}
+        public int health {get; set;}
 
-        protected int healing {get; set;}
+        public int healing {get; set;}
 
-        protected List<Item> inventary = new List<Item>();
+        public List<Item> inventary = new List<Item>();
 
-        protected int vp {get; set;}
+        public int vp {get; set;}
 
-        protected bool hero {get; set;}
+        public bool hero {get; set;}
 
-        public Character(string name, int damage, int health, int healing, List<Item> inventary,  bool hero)
+        public bool isAlive {get; set;}
+
+        public Character(string name, int damage, int health, int healing, List<Item> inventary,  bool hero, bool isAlive)
         {
             this.name = name;
             this.damage = damage;
             this.health = health;
             this.vp = 0;
             this.hero = hero;
-
+            this.isAlive = isAlive;
         }
 
         public void Attack(Character character)
         {
             int newHealth = character.health - this.damage;
             character.health=newHealth;
-            if(newHealth<=0)
+            if(character.health<=0)
             {
-                vp=vp+10;
+                this.vp=vp + character.vp;
+                this.health += this.health + 50;
             }
         }
 
@@ -44,7 +47,6 @@ namespace RolePlayEndGame
         {
             int newHealth = character.health + this.healing;
             character.health = newHealth;
-
         }
 
         public void AddItem(Item item)
@@ -55,6 +57,16 @@ namespace RolePlayEndGame
         public void RemoveItem(Item item)
         {
             inventary.Remove(item);
+        }
+
+        public bool IsAlive()
+        {
+            bool isAlive=true;
+            if(this.health <= 0)
+            {
+                isAlive = false;
+            }
+            return isAlive;
         }
     }
 }

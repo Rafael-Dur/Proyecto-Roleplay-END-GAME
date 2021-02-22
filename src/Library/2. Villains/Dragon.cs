@@ -11,7 +11,7 @@ namespace RolePlayEndGame
         protected bool fly {get; set;} /*Si el personaje puede volar, no puede ser atacado con armas cuerpo a cuerpo*/
         public List<Item> hybridInventary = new List<Item>();
 
-        public Dragon(string name, int damage, int health, int healing, int fireBreath,  List<Item> hybridInventary) :base (name,damage, health, healing, new List<Item>(), false)
+        public Dragon(string name, int damage, int health, int healing, int fireBreath,  List<Item> hybridInventary) :base (name,damage, health, healing, new List<Item>(), false, true)
         {
             this.healing = 0;
             this.hero = false;
