@@ -14,7 +14,10 @@ namespace RolePlayEndGame
         }
         public void Add(IHero heroe)
         {
-            heroesDerrotados.Add(heroe);
+            if(heroe.isDead())
+            {
+                heroesDerrotados.Add(heroe);
+            }
         }
 
 

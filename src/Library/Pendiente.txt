@@ -1,0 +1,11 @@
+Cosas pendientes:
+
+- Hacer tests
+
+- Comprobar que cuando el hobbit no tiene invisibbilidad pueda ser atacado.
+
+- Reajustar el ataque del enano (y de todos los héroes necesarios) 
+  para que solo pueda atacar enemigos voladores si tiene un arco.
+  
+- Terminar de implementar todos los métodos en el program.
+

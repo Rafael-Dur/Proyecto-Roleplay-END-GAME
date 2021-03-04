@@ -4,7 +4,7 @@ using RolePlayEndGame;
 
 namespace RolePlayEndGame
 {
-    public class Encounters
+    public class Encounters: IScenary
     {
 
         public List<IHero> listaDeHeroes = new List<IHero>();
@@ -28,7 +28,7 @@ namespace RolePlayEndGame
         }
 
 
-        public void CombatEncounter(Character attackCharacter, Character affectedCharacter)
+        public string CombatEncounter()
         {
             while((listaDeHeroes.Count) > 0 && (listaDeVillanos.Count) > 0)
             {
@@ -60,6 +60,14 @@ namespace RolePlayEndGame
                             }
                     }   
                 }
+                
+            }
+            if(listaDeHeroes.Count>0)
+            {
+                return "win villain";
+            }
+            else{
+                return "win heroe";
             }
         }
     }

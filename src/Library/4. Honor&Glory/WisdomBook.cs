@@ -15,7 +15,7 @@ namespace RolePlayEndGame
 
         public void Register(Character character)
         {
-            if(character.health <= 0)
+            if(character.IsAlive())
             {
                 listOfDefeats.Add(character);
             }

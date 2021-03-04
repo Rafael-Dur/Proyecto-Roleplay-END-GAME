@@ -4,22 +4,47 @@ using RolePlayEndGame;
 
 namespace RolePlayEndGame
 {
-    public class HumanKnight: Character
+    public class HumanKnight: Character, IHero
     {
-        public int stun {get; set;} /*Este atributo impide a los oponentes atacar, curarse y moverse durante un período de tiempo*/
 
-        public  HumanKnight(string name, int damage, int health, int healing, List<Item> inventary, int stun): base( name,damage,health,healing,inventary,true, true)
+        public  HumanKnight(string name, int damage, int health, int healing, List<Item> inventary): base( name,damage,health,healing,inventary,true, true)
         {
             this.healing = 0;
             this.hero = true;
-            this.stun = stun;
 
         }
 
-        public void AddItems(Item item)
+        public override void Attack(Character character)
+                {
+                    int newHealth = character.health - this.damage;
+                    character.health=newHealth;
+
+                    if(character.health<=0)
+                    {
+                        this.vp=vp + character.vp;
+                        this.health += this.health + 50;
+                        character.health=0;
+                    }
+                }
+       public void AddItems(Item item)
         {
             if(isItemHero(item))
-                inventary.Add(item);
+                {
+                    if (item is MagicItem)
+                    {
+                        foreach(Item it in inventary)
+                        {
+                            if(it is AsclepioStaff)
+                            {
+                                AsclepioStaff asclepio=(AsclepioStaff)it;
+                                asclepio.ListMagic.Add((MagicItem)item);
+                            }
+                        }
+                    }
+                    else{
+                        inventary.Add(item);
+                    }
+                }
         }
 
          public new void RemoveItem(Item item)
@@ -27,6 +52,7 @@ namespace RolePlayEndGame
             inventary.Remove(item);
 
         }
+
         public bool isItemHero(Item item)
         {
             if(item is IVillain)
@@ -36,6 +62,11 @@ namespace RolePlayEndGame
             else{
                 return true;
             }
+        }
+        
+        public bool isDead()
+        {
+            return !IsAlive();
         }
     }
 }

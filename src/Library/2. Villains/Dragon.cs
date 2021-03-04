@@ -4,7 +4,7 @@ using RolePlayEndGame;
 
 namespace RolePlayEndGame
 {
-    public class Dragon: Character
+    public class Dragon: Character, IVillain
     {
         protected int fireBreath {get; set;} /* Atributo que intensifica porcentualmente el valor de daño del personaje*/
 
@@ -20,6 +20,24 @@ namespace RolePlayEndGame
             this.hybridInventary = hybridInventary;
 
         }
+
+         bool IVillain.DoesItFly()
+         {
+             return true;
+         }
+
+        public override void Attack(Character character)
+        {
+            int newHealth = character.health - (this.damage*this.fireBreath);
+            character.health=newHealth;
+            if(character.health<=0)
+            {
+                this.vp=vp + character.vp;
+                this.health += this.health + 50;
+                character.health=0;
+            }
+        }
+
         public void AddItems(Item item)
         {   
             if(isItemVillain(item))
@@ -51,6 +69,10 @@ namespace RolePlayEndGame
             else{
                 return true;
             }
+        }
+        public bool isDead()
+        {
+            return !IsAlive();
         }
     }
 }

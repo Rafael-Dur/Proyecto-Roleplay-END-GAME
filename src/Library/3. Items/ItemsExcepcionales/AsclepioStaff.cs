@@ -13,12 +13,9 @@ namespace RolePlayEndGame
             ListMagic=new List<MagicItem>();
         }
 
-        public void Combine(MagicItem item)
+        public void Combine(Character character, MagicItem item)
         {
-           ListMagic.Add(item);
+            ListMagic.Add(item);
         }
-
-        
-
     }
 }

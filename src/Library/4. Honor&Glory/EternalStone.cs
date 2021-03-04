@@ -13,9 +13,12 @@ namespace RolePlayEndGame
 
         }
 
-        public void AddToAccount()
+        public void AddToAccount(IVillain villano)
         {
-            villanosDerrotados += 1;
+            if(villano.isDead())
+            {
+                villanosDerrotados += 1;
+            }
         }
     }
 }

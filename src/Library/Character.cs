@@ -4,17 +4,17 @@ using RolePlayEndGame;
 
 namespace RolePlayEndGame
 {
-    public class Character
+    public abstract class Character
     {
         public string name{get; set;}
 
         public int damage {get; set;}
 
-        public int health {get; set;}
+        public virtual int health {get; set;}
 
         public int healing {get; set;}
 
-        public List<Item> inventary = new List<Item>();
+        public List<Item> inventary;
 
         public int vp {get; set;}
 
@@ -30,17 +30,100 @@ namespace RolePlayEndGame
             this.vp = 0;
             this.hero = hero;
             this.isAlive = isAlive;
+            this.inventary=inventary;
         }
 
-        public void Attack(Character character)
+        private void AttackAux(Character character)
         {
-            int newHealth = character.health - this.damage;
-            character.health=newHealth;
-            if(character.health<=0)
+             int newHealth = character.health - this.damage;
+                character.health=newHealth;
+                if(character.health<=0)
+                {
+                    this.vp=vp + character.vp;
+                    this.health += this.health + 50;
+                    character.health=0;
+                }
+        }
+        public virtual void Attack(Character character)
+        {
+            
+            if(character is IVillain)
             {
-                this.vp=vp + character.vp;
-                this.health += this.health + 50;
+                if(((IVillain)character).DoesItFly())
+                {
+                    bool play=false;
+                    foreach(Item item in this.inventary)
+                    {
+                        if(item is Bow)
+                        {
+                            AttackAux(character);
+                            play=true;
+                        }
+                        
+                    }
+                    if(!play)
+                    {
+                        throw new Exception("Tu personaje no puede atacar enemigos voladores, porque no cuenta con armas a distancia");
+                    }
+                    
+                }
+                else
+                {
+                    AttackAux(character);
+                }
             }
+
+            else
+            {
+                if(character is Dwarf)
+                {
+                    int newHealth = (character.health+((Dwarf)character).resistance)  - this.damage;
+                    character.health=newHealth;
+                    if(character.health<=0)
+                    {
+                        this.vp=vp + character.vp;
+                        this.health += this.health + 50;
+                        character.health=0;
+                    }
+                }
+            
+                else
+                {
+                if(character is Hobbit)
+                {
+                    if(((Hobbit)character).isInvisible)
+                    {
+                       TimeSpan tiempo=DateTime.Now- ((Hobbit)character).Protecter;
+                       if(tiempo.Seconds>((Hobbit)character).invisivility)
+                       {
+                            AttackAux(character);
+                            ((Hobbit)character).isInvisible=false;
+                       }
+                    }
+                    else
+                    {
+                        Random random = new Random();
+                        //int booleano = random.Next(0,1);
+                        int booleano=0;
+                        if(booleano == 1)
+                        {
+                            ((Hobbit)character).isInvisible=true;    
+                        }
+                        else
+                        {
+                            AttackAux(character);
+                        }
+                    }
+                }
+                
+                else
+                {
+                    AttackAux(character);
+
+                }
+            }
+        }
+    
         }
 
         public void Cure(Character character)

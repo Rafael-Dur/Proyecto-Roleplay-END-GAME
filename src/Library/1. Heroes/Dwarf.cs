@@ -15,11 +15,27 @@ namespace RolePlayEndGame
             this.resistance = resistance;
 
         }
-
+        
         public void AddItems(Item item)
         {
             if(isItemHero(item))
-                inventary.Add(item);
+                {
+                    if (item is MagicItem)
+                    {
+                        foreach(Item it in inventary)
+                        {
+                            if(it is AsclepioStaff)
+                            {
+                                AsclepioStaff asclepio=(AsclepioStaff)it;
+                                asclepio.ListMagic.Add((MagicItem)item);
+                            }
+                        }
+                    }
+                    else{
+                        inventary.Add(item);
+                    }
+                }
+                
         
         }
 
@@ -28,7 +44,7 @@ namespace RolePlayEndGame
             inventary.Remove(item);
 
         }
-
+        
         public bool isItemHero(Item item)
         {
             if(item is IVillain)
@@ -38,6 +54,11 @@ namespace RolePlayEndGame
             else{
                 return true;
             }
+        }
+
+        public bool isDead()
+        {
+            return !IsAlive();
         }
     }
 }

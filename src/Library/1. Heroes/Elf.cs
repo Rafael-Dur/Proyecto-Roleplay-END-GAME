@@ -4,7 +4,7 @@ using RolePlayEndGame;
 
 namespace RolePlayEndGame
 {
-    public class Elf: Character
+    public class Elf: Character, IHero
     {
         public int speedMovment {get; set;}
 
@@ -41,6 +41,7 @@ namespace RolePlayEndGame
             inventary.Remove(magicItem);
 
         }
+
         public bool isItemHero(Item item)
         {
             if(item is IVillain)
@@ -50,6 +51,11 @@ namespace RolePlayEndGame
             else{
                 return true;
             }
+        }
+        
+        public bool isDead()
+        {
+            return !IsAlive();
         }
     }
 }

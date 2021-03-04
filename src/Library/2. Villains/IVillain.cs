@@ -7,5 +7,8 @@ namespace RolePlayEndGame
     public interface IVillain
     {
         bool isItemVillain(Item item);
+
+        bool DoesItFly();
+        bool isDead();
     }
 }

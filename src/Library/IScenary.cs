@@ -4,9 +4,8 @@ using RolePlayEndGame;
 
 namespace RolePlayEndGame
 {
-    public interface IHero
+    public interface IScenary
     {
-        bool isItemHero(Item item);
-        bool isDead();
+        public  string CombatEncounter();
     }
 }

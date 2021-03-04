@@ -4,7 +4,7 @@ using RolePlayEndGame;
 
 namespace RolePlayEndGame
 {
-    public class DarkRaider: Character
+    public class DarkRaider: Character, IVillain
     {
         protected int speedMovment {get; set;}
 
@@ -13,13 +13,31 @@ namespace RolePlayEndGame
             this.healing = 0;
             this.hero = false;
             this.speedMovment = speedMovment;
-
+        }
+        bool IVillain.DoesItFly()
+        {
+            return false;
         }
 
         public void AddItems(Item item)
         {
             if(isItemVillain(item))
-                inventary.Add(item);
+            {
+                if (item is Gem)
+                    {
+                        foreach(Item it in inventary)
+                        {
+                            if(it is DarkSword)
+                            {
+                                DarkSword darkSword =(DarkSword)it;
+                                darkSword.listGems.Add((Gem)item);
+                            }
+                        }
+                    }
+                    else{
+                        inventary.Add(item);
+                    }
+            }
         }
 
          public new void RemoveItem(Item item)
@@ -36,6 +54,10 @@ namespace RolePlayEndGame
             else{
                 return true;
             }
+        }
+        public bool isDead()
+        {
+            return !IsAlive();
         }
     }
 }
